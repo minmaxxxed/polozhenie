@@ -1,0 +1,44 @@
+[project]
+name = "handler-service"
+version = "0.1.0"
+description = "HTTP requests handler for image-processing pet project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.117.1",
+    "pydantic>=2.11.9",
+    "python-multipart>=0.0.20",
+    "uvicorn>=0.37.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "ruff>=0.13.1",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1",
+    "D211",
+    "D213",
+]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_errors = false
+ignore_missing_imports = false
+warn_unused_ignores = true
+warn_redundant_casts = true
+show_error_codes = true
+disallow_untyped_calls = true
+namespace_packages = true
+explicit_package_bases = true
+no_implicit_optional = true
+plugins = ["pydantic.mypy"]
