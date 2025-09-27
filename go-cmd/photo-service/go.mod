@@ -1,6 +1,8 @@
-module github.com/minmaxxxed/polozhenie
+module github.com/minmaxxxed/polozhenie/go-cmd/photo-filters
 
 go 1.24.1
+
+require github.com/minmaxxxed/polozhenie v0.0.0-20250927170212-71085f8cf3ad
 
 require (
 	github.com/klauspost/compress v1.15.9 // indirect
