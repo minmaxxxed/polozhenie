@@ -1,6 +1,7 @@
 package phfilter
 
 import (
+	"image"
 	"log"
 )
 
@@ -12,6 +13,8 @@ func NewBlurFilter() *BlurFilter {
 	return &BlurFilter{true}
 }
 
-func (f *BlurFilter) Process() {
+func (f *BlurFilter) Process(request Request) (image.Image, error) {
+
 	log.Print("Proccess_moc... blur filter inited: ", f.init)
+	return request.Img, nil
 }
