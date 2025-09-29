@@ -4,5 +4,7 @@ github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 h1:DACJavvAHhabrF0
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
 github.com/minmaxxxed/polozhenie/internal/photo-filters v0.0.0-20250927211755-e533c20d6b21 h1:rVfFCkSNhywfs4tQ+JaYP3yGnRkzR4mvPAwnUM/eUBw=
 github.com/minmaxxxed/polozhenie/internal/photo-filters v0.0.0-20250927211755-e533c20d6b21/go.mod h1:7ouk3QyXy1aB7U8A+iw7x0FY79LcLbasp46GNL6xdBk=
+github.com/minmaxxxed/polozhenie/internal/photo-filters v0.0.0-20250929175300-4139e0c2ecdc h1:NwBBSPMWHFvNnLlVpuennpfUh2suTDX+4PdUbWQrHE0=
+github.com/minmaxxxed/polozhenie/internal/photo-filters v0.0.0-20250929175300-4139e0c2ecdc/go.mod h1:6m3GZfaK/Q2mT75jy00W9rmDHf8deq7c45gzj2+PJ4U=
 golang.org/x/image v0.31.0 h1:mLChjE2MV6g1S7oqbXC0/UcKijjm5fnJLUYKIYrLESA=
 golang.org/x/image v0.31.0/go.mod h1:R9ec5Lcp96v9FTF+ajwaH3uGxPH4fKfHHAVbUILxghA=
