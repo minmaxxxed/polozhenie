@@ -1,6 +1,0 @@
-services:
-  handler-service:
-    build: ./handler-service
-    command: uvicorn app:app --host 0.0.0.0 --port 80
-    ports:
-      - $HANDLER_SERVICE__PORT:80

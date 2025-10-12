@@ -1,0 +1,75 @@
+services:
+  kafka:
+    image: apache/kafka-native
+    container_name: kafka
+    hostname: $KAFKA__HOST
+    ports:
+      - "$KAFKA__PORT:9092"
+    environment:
+      KAFKA_LISTENERS: CONTROLLER://localhost:9091,HOST://0.0.0.0:9092,DOCKER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: HOST://localhost:9092,DOCKER://kafka:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,DOCKER:PLAINTEXT,HOST:PLAINTEXT
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9091
+      KAFKA_INTER_BROKER_LISTENER_NAME: DOCKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    profiles: [infra]
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    hostname: $S3__HOST
+    ports:
+      - $S3__PORT:9000
+      - 9001:9001
+    volumes:
+      - S3_storage:/data
+    environment:
+      MINIO_ROOT_USER: $S3__USERNAME
+      MINIO_ROOT_PASSWORD: $S3__PASSWORD
+    command: server --console-address ":9001" /data
+    profiles: [infra]
+
+  kafka-ui:
+    image: kafbat/kafka-ui:main
+    container_name: kafka-ui
+    ports:
+      - 8080:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
+    depends_on:
+      - kafka
+    profiles: [dev]
+
+  handler-service:
+    build: ./handler-service
+    container_name: handler-service
+    command: uvicorn app:app --host 0.0.0.0 --port 80
+    ports:
+      - $HANDLER_SERVICE__PORT:80
+    profiles: [services]
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$DB__USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$DB__PASSWORD
+      - MONGO_INITDB_DATABASE=$DB__DATABASE_NAME
+      - DB_PASSWORD=$DB__PASSWORD
+      - DB_USERNAME=$DB__USERNAME
+    volumes:
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - mongo_storage:/data/db
+    profiles: [infra]
+
+volumes:
+  S3_storage: {}
+  mongo_storage: {}
