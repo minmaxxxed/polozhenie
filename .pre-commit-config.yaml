@@ -1,0 +1,82 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+
+-   repo: local
+    hooks:
+    -   id: mypy
+        name: type-check [pycommon]
+        language: system
+        files: ^pycommon
+        entry: uv run --directory=./pycommon mypy .
+        require_serial: true
+        types: [python]
+
+    -   id: mypy
+        name: type-check [order-service]
+        language: system
+        files: ^order-service
+        entry: uv run --directory=./order-service mypy .
+        require_serial: true
+        types: [ python ]
+
+    -   id: mypy
+        name: type-check [handler-service]
+        language: system
+        files: ^handler-service
+        entry: uv run --directory=./handler-service mypy .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: linter [pycommon]
+        language: system
+        files: ^pycommon
+        entry: uv run --directory=./pycommon ruff check .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: linter [order-service]
+        language: system
+        files: ^order-service
+        entry: uv run --directory=./order-service ruff check .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: linter [handler-service]
+        language: system
+        files: ^handler-service
+        entry: uv run --directory=./handler-service ruff check .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: formatter [pycommon]
+        language: system
+        files: ^pycommon
+        entry: uv run --directory=./pycommon ruff format --check .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: formatter [order-service]
+        language: system
+        files: ^order-service
+        entry: uv run --directory=./order-service ruff format --check .
+        require_serial: true
+        types: [ python ]
+
+    -   id: ruff
+        name: formatter [handler-service]
+        language: system
+        files: ^handler-service
+        entry: uv run --directory=./handler-service ruff format --check .
+        require_serial: true
+        types: [ python ]
