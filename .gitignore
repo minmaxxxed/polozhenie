@@ -70,6 +70,7 @@ venv.bak/
 dmypy.json
 
 .vscode/
+.idea/
 
 # Ruff stuff:
 .ruff_cache/
