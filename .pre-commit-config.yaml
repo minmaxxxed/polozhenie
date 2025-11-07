@@ -7,76 +7,92 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
 
+-   repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.3.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
+
 -   repo: local
     hooks:
     -   id: mypy
         name: type-check [pycommon]
         language: system
-        files: ^pycommon
-        entry: uv run --directory=./pycommon mypy .
+        files: ^pycommon/
+        entry: uv run --directory=pycommon mypy .
+        pass_filenames: false
         require_serial: true
         types: [python]
 
     -   id: mypy
         name: type-check [order-service]
         language: system
-        files: ^order-service
-        entry: uv run --directory=./order-service mypy .
+        files: ^order-service/
+        entry: uv run --directory=order-service mypy .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: mypy
         name: type-check [handler-service]
         language: system
-        files: ^handler-service
-        entry: uv run --directory=./handler-service mypy .
+        files: ^handler-service/
+        entry: uv run --directory=handler-service mypy .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: linter [pycommon]
         language: system
-        files: ^pycommon
-        entry: uv run --directory=./pycommon ruff check .
+        files: ^pycommon/
+        entry: uv run --directory=pycommon ruff check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: linter [order-service]
         language: system
-        files: ^order-service
-        entry: uv run --directory=./order-service ruff check .
+        files: ^order-service/
+        entry: uv run --directory=order-service ruff check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: linter [handler-service]
         language: system
-        files: ^handler-service
-        entry: uv run --directory=./handler-service ruff check .
+        files: ^handler-service/
+        entry: uv run --directory=handler-service ruff check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: formatter [pycommon]
         language: system
-        files: ^pycommon
-        entry: uv run --directory=./pycommon ruff format --check .
+        files: ^pycommon/
+        entry: uv run --directory=pycommon ruff format --check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: formatter [order-service]
         language: system
-        files: ^order-service
-        entry: uv run --directory=./order-service ruff format --check .
+        files: ^order-service/
+        entry: uv run --directory=order-service ruff format --check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
 
     -   id: ruff
         name: formatter [handler-service]
         language: system
-        files: ^handler-service
-        entry: uv run --directory=./handler-service ruff format --check .
+        files: ^handler-service/
+        entry: uv run --directory=handler-service ruff check .
+        pass_filenames: false
         require_serial: true
         types: [ python ]
