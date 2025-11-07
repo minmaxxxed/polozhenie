@@ -1,0 +1,57 @@
+[project]
+name = "pycommon"
+version = "0.1.0"
+description = "Common-use library for polozhenie project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic>=2.12.3",
+    "pydantic-settings>=2.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "ruff>=0.13.1",
+]
+
+[build-system]
+requires = ["uv_build >= 0.9.5, <0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "polozhenie"
+module-root = ""
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1",
+    "D211",
+    "D213",
+    "D203",
+    "COM812",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "F403",
+]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_errors = false
+ignore_missing_imports = false
+warn_unused_ignores = true
+warn_redundant_casts = true
+show_error_codes = true
+disallow_untyped_calls = true
+namespace_packages = true
+explicit_package_bases = true
+no_implicit_optional = true
+plugins = ["pydantic.mypy"]
