@@ -39,15 +39,6 @@ repos:
         require_serial: true
         types: [ python ]
 
-    -   id: mypy
-        name: type-check [handler-service]
-        language: system
-        files: ^handler-service/
-        entry: uv run --directory=handler-service mypy .
-        pass_filenames: false
-        require_serial: true
-        types: [ python ]
-
     -   id: ruff
         name: linter [pycommon]
         language: system
@@ -67,15 +58,6 @@ repos:
         types: [ python ]
 
     -   id: ruff
-        name: linter [handler-service]
-        language: system
-        files: ^handler-service/
-        entry: uv run --directory=handler-service ruff check .
-        pass_filenames: false
-        require_serial: true
-        types: [ python ]
-
-    -   id: ruff
         name: formatter [pycommon]
         language: system
         files: ^pycommon/
@@ -89,15 +71,6 @@ repos:
         language: system
         files: ^order-service/
         entry: uv run --directory=order-service ruff format --check .
-        pass_filenames: false
-        require_serial: true
-        types: [ python ]
-
-    -   id: ruff
-        name: formatter [handler-service]
-        language: system
-        files: ^handler-service/
-        entry: uv run --directory=handler-service ruff check .
         pass_filenames: false
         require_serial: true
         types: [ python ]

@@ -14,7 +14,7 @@
 2. Поднять сервисы:
 
 ```shell
-docker compose up --build -d
+docker compose --profile services --profile infra up --build
 ```
 
 ## Настройка dev-окружения
@@ -31,6 +31,13 @@ make -C <имя-директории> check
 
 ```shell
 make -C <имя-директории> fix
+```
+
+Для python-проектов можно использовать синтаксис uv run:
+
+```shell
+uv run --directory=<имя-директории> make check
+uv run --directory=<имя-директории> make fix
 ```
 
 ### pre-commit-hooks

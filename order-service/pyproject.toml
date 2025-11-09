@@ -1,12 +1,15 @@
 [project]
-name = "polozhenie-common"
+name = "polozhenie-order-service"
 version = "0.1.0"
-description = "Common-use library for polozhenie project"
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "beanie>=2.0.0",
+    "fastapi>=0.120.2",
+    "polozhenie-common",
     "pydantic>=2.12.3",
-    "pydantic-settings>=2.11.0",
+    "uvicorn>=0.38.0",
 ]
 
 [dependency-groups]
@@ -20,8 +23,11 @@ requires = ["uv_build >= 0.9.5, <0.10.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-module-name = "polozhenie.common"
+module-name = "polozhenie.order_service"
 module-root = ""
+
+[tool.uv.sources]
+polozhenie-common = { path = "../pycommon", editable = true }
 
 [tool.ruff]
 target-version = "py313"
